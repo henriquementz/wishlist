@@ -29,7 +29,7 @@ class ItemRepositoryTest {
     @Order(1)
     @Test
     public void given_AValidItemEntity_When_Save_Then_ExpectedItemSaved() {
-        var validItemEntity = MockUtil.getValidEntity();
+        var validItemEntity = MockUtil.getValidItemEntity();
         var itemEntitySaved = itemRepository.save(validItemEntity);
         assertNotNull(itemEntitySaved.getId());
         assertNotNull(itemEntitySaved.getAddedAt());
@@ -42,14 +42,14 @@ class ItemRepositoryTest {
     @Order(2)
     @Test
     public void given_AClientWith1ItemInWishlist_When_CountByClientId_Then_Expected1() {
-        var itemEntitySaved = itemRepository.countByClientId(MockUtil.getValidEntity().getClientId());
+        var itemEntitySaved = itemRepository.countByClientId(MockUtil.getValidItemEntity().getClientId());
         assertEquals(1L, itemEntitySaved);
     }
 
     @Order(3)
     @Test
     public void given_AClientWith1ItemInWishlist_When_CountByClientIdAndProductId_Then_Expected1() {
-        var validItemEntity = MockUtil.getValidEntity();
+        var validItemEntity = MockUtil.getValidItemEntity();
 
         var itemEntitySaved = itemRepository.countByClientIdAndProductId(validItemEntity.getClientId(),
                 validItemEntity.getProductId());
@@ -60,7 +60,7 @@ class ItemRepositoryTest {
     @Order(4)
     @Test
     public void given_AClientWith1ItemInWishlist_When_FindByClientId_Then_ExpectedAListOfItems() {
-        var validItemEntity = MockUtil.getValidEntity();
+        var validItemEntity = MockUtil.getValidItemEntity();
 
         var list = itemRepository.findByClientId(validItemEntity.getClientId(),
                 PageRequest.of(0, 10));
@@ -77,7 +77,7 @@ class ItemRepositoryTest {
     @Order(5)
     @Test
     public void given_AProductSavedInWishlist_When_deleteByClientIdAndProductId_Then_ExpectedItemDeleted() {
-        var validItemEntity = MockUtil.getValidEntity();
+        var validItemEntity = MockUtil.getValidItemEntity();
         itemRepository.deleteByClientIdAndProductId(validItemEntity.getClientId(), validItemEntity.getProductId());
         var itemEntitySaved = itemRepository.countByClientIdAndProductId(validItemEntity.getClientId(),
                 validItemEntity.getProductId());

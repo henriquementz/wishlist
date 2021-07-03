@@ -22,11 +22,8 @@ public class ItemGatewayImpl implements ItemGateway {
     @Override
     public Item save(final Item item) {
         var itemEntity = ItemMapper.mapFromDomain(item);
-
         var itemEntitySaved = itemRepository.save(itemEntity);
-
         log.info("WISHLIST_ITEM_SAVED | Item was saved successfully | Item: {}", itemEntitySaved);
-
         return ItemMapper.mapFromEntity(itemEntitySaved);
     }
 
