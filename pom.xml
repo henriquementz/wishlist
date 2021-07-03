@@ -23,6 +23,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
