@@ -11,15 +11,17 @@
 
     <artifactId>wishlist-dataprovider</artifactId>
 
-    <properties>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>br.com.wishlist</groupId>
             <artifactId>wishlist-core</artifactId>
             <version>0.0.1</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
