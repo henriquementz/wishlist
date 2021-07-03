@@ -2,6 +2,7 @@ package br.com.wishlist.util;
 
 import br.com.wishlist.database.entity.ItemEntity;
 import br.com.wishlist.domain.Item;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.OffsetDateTime;
 
@@ -24,6 +25,10 @@ public final class MockUtil {
                 .clientId(1L)
                 .desired(1L)
                 .build();
+    }
+
+    public static PageRequest getPageRequest() {
+        return PageRequest.of(0, 10);
     }
 
 }

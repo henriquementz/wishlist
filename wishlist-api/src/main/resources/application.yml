@@ -21,7 +21,7 @@ spring:
     banner-mode: off
   data:
     mongodb:
-      host: '${MONGO_HOST:localhost}'
+      host: '${MONGO_HOST:mongo_db}'
       port: 27017
       database: wishlist
 
