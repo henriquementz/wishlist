@@ -12,8 +12,6 @@ jobs:
       - run:
           name: Test
           command: mvn test
-      - store_artifacts:
-          path: target
 
 workflows:
   sample: 
