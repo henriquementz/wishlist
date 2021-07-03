@@ -1,10 +1,7 @@
 package br.com.wishlist.gateway;
 
-import br.com.wishlist.database.entity.ItemEntity;
 import br.com.wishlist.database.repository.ItemRepository;
 import br.com.wishlist.domain.Item;
-import br.com.wishlist.error.exception.WishlistItemExceededException;
-import br.com.wishlist.error.exception.WishlistProductNotFoundException;
 import br.com.wishlist.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

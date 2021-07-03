@@ -1,6 +1,5 @@
 package br.com.wishlist.usecase;
 
-import br.com.wishlist.error.exception.WishlistItemExceededException;
 import br.com.wishlist.error.exception.WishlistProductNotFoundException;
 import br.com.wishlist.gateway.ItemGateway;
 import br.com.wishlist.util.MockUtil;
@@ -10,11 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.swing.text.html.Option;
-
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 

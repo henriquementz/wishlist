@@ -1,13 +1,10 @@
 package br.com.wishlist.usecase;
 
-import br.com.wishlist.domain.Item;
 import br.com.wishlist.error.exception.WishlistProductNotFoundException;
 import br.com.wishlist.gateway.ItemGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

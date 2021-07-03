@@ -1,7 +1,5 @@
 package br.com.wishlist.restapi.error.handler;
 
-import br.com.wishlist.error.exception.BaseException;
-import br.com.wishlist.error.exception.NotFoundException;
 import br.com.wishlist.error.exception.WishListProductAlreadyAddedException;
 import br.com.wishlist.error.exception.WishlistItemExceededException;
 import br.com.wishlist.error.exception.WishlistProductNotFoundException;

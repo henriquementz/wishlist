@@ -1,7 +1,6 @@
 package br.com.wishlist.restapi.model.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 

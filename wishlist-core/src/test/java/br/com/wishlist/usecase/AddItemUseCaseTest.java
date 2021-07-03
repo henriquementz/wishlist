@@ -10,9 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -44,9 +43,7 @@ class AddItemUseCaseTest {
 
         var validItem = MockUtil.getValidItem();
 
-        assertThrows(WishListProductAlreadyAddedException.class, () -> {
-            addItemUseCase.add(validItem);
-        });
+        assertThrows(WishListProductAlreadyAddedException.class, () -> addItemUseCase.add(validItem));
 
         verify(itemGateway).countByClientId(validItem.getClientId());
         verify(itemGateway).isProductAlreadyAdded(validItem.getClientId(), validItem.getProductId());
@@ -59,9 +56,7 @@ class AddItemUseCaseTest {
 
         var validItem = MockUtil.getValidItem();
 
-        assertThrows(WishlistItemExceededException.class, () -> {
-            addItemUseCase.add(validItem);
-        });
+        assertThrows(WishlistItemExceededException.class, () -> addItemUseCase.add(validItem));
 
         verify(itemGateway).countByClientId(validItem.getClientId());
         verify(itemGateway, times(0)).isProductAlreadyAdded(validItem.getClientId(), validItem.getProductId());
