@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/henriquementz/wishlist.svg?branch=main)](https://travis-ci.org/henriquementz/wishlist)
+[![CircleCI](https://circleci.com/gh/henriquementz/wishlist.svg?style=svg)](https://circleci.com/gh/henriquementz/wishlist)
