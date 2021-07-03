@@ -1,0 +1,16 @@
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
+spring:
+  main:
+    banner-mode: off
+  data:
+    mongodb:
+      host: mongo_db
+      port: 27017
+      database: wishlist
+
+
+logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta([%t]) %m%n"
+
