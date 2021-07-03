@@ -7,6 +7,7 @@ services:
             - 8080:8080
         depends_on:
             - mongo_db
+        image: henriquementz/wishlist
     mongo_db:
         image: "mongo:4.4.3"
         restart: always

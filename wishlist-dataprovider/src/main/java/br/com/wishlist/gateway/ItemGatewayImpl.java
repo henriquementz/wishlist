@@ -64,6 +64,7 @@ public class ItemGatewayImpl implements ItemGateway {
          if (productOptional.isEmpty()) {
              return Optional.empty();
          } else {
+             log.info("WISHLIST_ITEM_FOUND | Product was found: {}.", productOptional.get());
              return Optional.of(ItemMapper.mapFromEntity(productOptional.get()));
          }
     }

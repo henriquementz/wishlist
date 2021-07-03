@@ -3,11 +3,25 @@ springdoc:
     path: /swagger-ui-custom.html
 
 spring:
+  cloud:
+    kubernetes:
+      discovery:
+        register: true
+
+      config:
+        enabled: true
+        sources:
+          - namespace: default
+            name: mongo-db-config
+      reload:
+        enabled: true
+        mode: polling
+        period: 1000
   main:
     banner-mode: off
   data:
     mongodb:
-      host: mongo_db
+      host: '${MONGO_HOST:localhost}'
       port: 27017
       database: wishlist
 
