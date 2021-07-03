@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -31,6 +32,58 @@ class ItemRepositoryTest {
         var validItemEntity = MockUtil.getValidEntity();
         var itemEntitySaved = itemRepository.save(validItemEntity);
         assertNotNull(itemEntitySaved.getId());
+        assertNotNull(itemEntitySaved.getAddedAt());
+        assertEquals(validItemEntity.getBought(), itemEntitySaved.getBought());
+        assertEquals(validItemEntity.getClientId(), itemEntitySaved.getClientId());
+        assertEquals(validItemEntity.getDesired(), itemEntitySaved.getDesired());
+        assertEquals(validItemEntity.getProductId(), itemEntitySaved.getProductId());
     }
+
+    @Order(2)
+    @Test
+    public void given_AClientWith1ItemInWishlist_When_CountByClientId_Then_Expected1() {
+        var itemEntitySaved = itemRepository.countByClientId(MockUtil.getValidEntity().getClientId());
+        assertEquals(1L, itemEntitySaved);
+    }
+
+    @Order(3)
+    @Test
+    public void given_AClientWith1ItemInWishlist_When_CountByClientIdAndProductId_Then_Expected1() {
+        var validItemEntity = MockUtil.getValidEntity();
+
+        var itemEntitySaved = itemRepository.countByClientIdAndProductId(validItemEntity.getClientId(),
+                validItemEntity.getProductId());
+
+        assertEquals(1L, itemEntitySaved);
+    }
+
+    @Order(4)
+    @Test
+    public void given_AClientWith1ItemInWishlist_When_FindByClientId_Then_ExpectedAListOfItems() {
+        var validItemEntity = MockUtil.getValidEntity();
+
+        var list = itemRepository.findByClientId(validItemEntity.getClientId(),
+                PageRequest.of(0, 10));
+
+        assertEquals(1L, list.size());
+        assertNotNull(list.get(0).getId());
+        assertNotNull(list.get(0).getAddedAt());
+        assertEquals(validItemEntity.getBought(), list.get(0).getBought());
+        assertEquals(validItemEntity.getClientId(), list.get(0).getClientId());
+        assertEquals(validItemEntity.getDesired(), list.get(0).getDesired());
+        assertEquals(validItemEntity.getProductId(), list.get(0).getProductId());
+    }
+
+    @Order(5)
+    @Test
+    public void given_AProductSavedInWishlist_When_deleteByClientIdAndProductId_Then_ExpectedItemDeleted() {
+        var validItemEntity = MockUtil.getValidEntity();
+        itemRepository.deleteByClientIdAndProductId(validItemEntity.getClientId(), validItemEntity.getProductId());
+        var itemEntitySaved = itemRepository.countByClientIdAndProductId(validItemEntity.getClientId(),
+                validItemEntity.getProductId());
+        assertEquals(0L, itemEntitySaved);
+    }
+
+
 
 }
