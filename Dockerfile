@@ -5,6 +5,9 @@ COPY wishlist-api /tmp/wishlist-api/
 COPY wishlist-core /tmp/wishlist-core/
 COPY wishlist-dataprovider /tmp/wishlist-dataprovider/
 WORKDIR /tmp/
+
+RUN mvn dependency:go-offline
+
 RUN mvn package
 
 FROM adoptopenjdk/openjdk11:alpine as release

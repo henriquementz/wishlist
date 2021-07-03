@@ -30,7 +30,7 @@ public class RestResponseEntityExceptionHandler {
     @ResponseBody
     protected ResponseEntity<ErrorResponse> handleBadRequest(final Throwable ex) {
 
-        ErrorDetailResponse error = ErrorDetailResponse.builder()
+        var error = ErrorDetailResponse.builder()
             .code(BAD_REQUEST.name())
             .title(BAD_REQUEST.name())
             .detail(ex.getMessage())
@@ -43,7 +43,7 @@ public class RestResponseEntityExceptionHandler {
     @ResponseBody
     protected ResponseEntity<ErrorResponse> handleNotFound(final Throwable ex) {
 
-        ErrorDetailResponse error = ErrorDetailResponse.builder()
+        var error = ErrorDetailResponse.builder()
             .code(NOT_FOUND.name())
             .title(NOT_FOUND.name())
             .detail(ex.getMessage())

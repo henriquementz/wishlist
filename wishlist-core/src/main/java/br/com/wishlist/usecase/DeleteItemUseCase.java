@@ -18,7 +18,7 @@ public class DeleteItemUseCase {
 
     public void deleteProduct(final Long clientId, final Long productId) {
 
-        Optional<Item> itemOptional = itemGateway.findProduct(clientId, productId);
+        var itemOptional = itemGateway.findProduct(clientId, productId);
 
         if (itemOptional.isEmpty()) {
             log.error("ERROR_WISHLIST_ITEM_DELETE | Product was not found on wishlist: {}.", productId);

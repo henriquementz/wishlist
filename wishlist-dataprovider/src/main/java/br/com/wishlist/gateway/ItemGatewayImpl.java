@@ -24,9 +24,9 @@ public class ItemGatewayImpl implements ItemGateway {
 
     @Override
     public Item save(final Item item) {
-        ItemEntity itemEntity = ItemMapper.mapFromDomain(item);
+        var itemEntity = ItemMapper.mapFromDomain(item);
 
-        ItemEntity itemEntitySaved = itemRepository.save(itemEntity);
+        var itemEntitySaved = itemRepository.save(itemEntity);
 
         log.info("WISHLIST_ITEM_SAVED | Item was saved successfully | Item: {}", itemEntitySaved);
 
@@ -59,7 +59,7 @@ public class ItemGatewayImpl implements ItemGateway {
 
     @Override
     public Optional<Item> findProduct(final Long clientId, final Long productId) {
-         Optional<ItemEntity> productOptional = itemRepository.findByClientIdAndProductId(clientId, productId);
+        var productOptional = itemRepository.findByClientIdAndProductId(clientId, productId);
 
          if (productOptional.isEmpty()) {
              return Optional.empty();

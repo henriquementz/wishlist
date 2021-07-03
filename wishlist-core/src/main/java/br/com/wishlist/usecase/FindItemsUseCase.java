@@ -28,7 +28,7 @@ public class FindItemsUseCase {
 
     public Item findByProductId(final Long clientId, final Long productId) {
 
-        Optional<Item> itemOptional = itemGateway.findProduct(clientId, productId);
+        var itemOptional = itemGateway.findProduct(clientId, productId);
 
         if (itemOptional.isEmpty()) {
             log.error("WISHLIST_ITEM_FIND | Product was not found on wishlist.");

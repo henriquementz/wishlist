@@ -19,7 +19,7 @@ public class AddItemUseCase {
 
         log.info("WISHLIST_ITEM_SAVE | Item was saved successfully | Item: {}", item);
 
-        Long itemsOnWishlist = itemGateway.countByClientId(item.getClientId());
+        var itemsOnWishlist = itemGateway.countByClientId(item.getClientId());
 
         log.info("WISHLIST_ITEM_SAVE | Wishlist has {} item(s)", itemsOnWishlist);
 
