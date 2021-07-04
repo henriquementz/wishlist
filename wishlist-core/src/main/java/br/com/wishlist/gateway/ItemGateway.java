@@ -22,6 +22,6 @@ public interface ItemGateway {
 
     boolean isAlreadyAdded(final Long clientId, final Long productId);
 
-    void delete(final Long clientId, final Long productId);
+    void delete(final Long clientId, final Long itemId);
 
 }

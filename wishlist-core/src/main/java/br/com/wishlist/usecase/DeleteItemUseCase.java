@@ -14,16 +14,16 @@ public class DeleteItemUseCase {
 
     private final ItemGateway itemGateway;
 
-    public void delete(final Long clientId, final Long productId) {
+    public void delete(final Long clientId, final Long itemId) {
 
-        var itemOptional = itemGateway.find(clientId, productId);
+        var itemOptional = itemGateway.find(clientId, itemId);
 
         if (itemOptional.isEmpty()) {
-            log.error("ERROR_WISHLIST_ITEM_DELETE | Product was not found on wishlist: {}.", productId);
+            log.error("ERROR_WISHLIST_ITEM_DELETE | Item was not found on wishlist: {}.", itemId);
             throw new ApiException(WishListErrorCode.WISHLIST_ITEM_NOT_FOUND);
         }
 
-        itemGateway.delete(clientId, productId);
+        itemGateway.delete(clientId, itemId);
     }
 
 }

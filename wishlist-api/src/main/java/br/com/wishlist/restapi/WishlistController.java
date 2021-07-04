@@ -47,14 +47,14 @@ public class WishlistController {
     }
 
     @GetMapping(value = "/{clientId}/item/{productId}")
-    public ResponseEntity<ItemResponse> get(@PathVariable Long clientId, @PathVariable Long productId) {
-        Item response = findItemsUseCase.findByItemId(clientId, productId);
+    public ResponseEntity<ItemResponse> get(@PathVariable Long clientId, @PathVariable Long itemId) {
+        Item response = findItemsUseCase.findByItemId(clientId, itemId);
         return ResponseEntity.ok(GroupMapper.mapFromDomain(response));
     }
 
-    @DeleteMapping(value = "/{clientId}/item/{productId}")
-    public ResponseEntity<Void> delete(@PathVariable Long clientId, @PathVariable Long productId) {
-        deleteItemUseCase.delete(clientId, productId);
+    @DeleteMapping(value = "/{clientId}/item/{itemId}")
+    public ResponseEntity<Void> delete(@PathVariable Long clientId, @PathVariable Long itemId) {
+        deleteItemUseCase.delete(clientId, itemId);
         return ResponseEntity.ok().build();
     }
 

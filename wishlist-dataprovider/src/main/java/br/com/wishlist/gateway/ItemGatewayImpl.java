@@ -33,14 +33,14 @@ public class ItemGatewayImpl implements ItemGateway {
     }
 
     @Override
-    public boolean isAlreadyAdded(final Long clientId, final Long productId) {
-        return itemRepository.countByClientIdAndItemId(clientId, productId) > 0;
+    public boolean isAlreadyAdded(final Long clientId, final Long itemId) {
+        return itemRepository.countByClientIdAndItemId(clientId, itemId) > 0;
     }
 
     @Override
-    public void delete(final Long clientId, final Long productId) {
-        itemRepository.deleteByClientIdAndItemId(clientId, productId);
-        log.info("WISHLIST_ITEM_DELETED | Product was successfully deleted.");
+    public void delete(final Long clientId, final Long itemId) {
+        itemRepository.deleteByClientIdAndItemId(clientId, itemId);
+        log.info("WISHLIST_ITEM_DELETED | Item was successfully deleted.");
     }
 
     @Override
@@ -52,14 +52,14 @@ public class ItemGatewayImpl implements ItemGateway {
     }
 
     @Override
-    public Optional<Item> find(final Long clientId, final Long productId) {
-        var productOptional = itemRepository.findByClientIdAndItemId(clientId, productId);
+    public Optional<Item> find(final Long clientId, final Long itemId) {
+        var itemOptional = itemRepository.findByClientIdAndItemId(clientId, itemId);
 
-         if (productOptional.isEmpty()) {
+         if (itemOptional.isEmpty()) {
              return Optional.empty();
          } else {
-             log.info("WISHLIST_ITEM_FOUND | Product was found: {}.", productOptional.get());
-             return Optional.of(ItemMapper.mapFromEntity(productOptional.get()));
+             log.info("WISHLIST_ITEM_FOUND | Item was found: {}.", itemOptional.get());
+             return Optional.of(ItemMapper.mapFromEntity(itemOptional.get()));
          }
     }
 

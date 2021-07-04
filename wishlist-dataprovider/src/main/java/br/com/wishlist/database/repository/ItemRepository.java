@@ -11,12 +11,12 @@ public interface ItemRepository extends MongoRepository<ItemEntity, String> {
 
     Long countByClientId(final Long clientId);
 
-    Long countByClientIdAndItemId(final Long clientId, final Long productId);
+    Long countByClientIdAndItemId(final Long clientId, final Long itemId);
 
     List<ItemEntity> findByClientId(Long clientId, Pageable pageable);
 
-    Optional<ItemEntity> findByClientIdAndItemId(final Long clientId, final Long productId);
+    Optional<ItemEntity> findByClientIdAndItemId(final Long clientId, final Long itemId);
 
-    void deleteByClientIdAndItemId(final Long clientId, final Long productId);
+    void deleteByClientIdAndItemId(final Long clientId, final Long itemId);
 
 }
