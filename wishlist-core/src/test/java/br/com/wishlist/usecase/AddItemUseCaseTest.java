@@ -23,7 +23,7 @@ class AddItemUseCaseTest {
     private ItemGateway itemGateway;
 
     @Test
-    public void given_WishlistWithLessThan20Items_When_SaveValidItem_Then_ExpectedItemSaved() {
+    public void given_WishlistNotFully_When_addItem_Then_ExpectedItemSaved() {
         when(itemGateway.countByClientId(anyLong())).thenReturn(19L);
         when(itemGateway.isAlreadyAdded(anyLong(), anyLong())).thenReturn(false);
 
@@ -36,7 +36,7 @@ class AddItemUseCaseTest {
     }
 
     @Test
-    public void given_WishlistWithLessThan20Items_When_SaveAlreadySavedItem_Then_ExpectedException() {
+    public void given_WishlistNotFully_When_AddItemAlreadyAdded_Then_ExpectedException() {
         when(itemGateway.countByClientId(anyLong())).thenReturn(19L);
         when(itemGateway.isAlreadyAdded(anyLong(), anyLong())).thenReturn(true);
 
@@ -50,7 +50,7 @@ class AddItemUseCaseTest {
     }
 
     @Test
-    public void given_WishlistWith20Items_When_SaveAValidItem_Then_ExpectedException() {
+    public void given_WishlistFully_When_AddNewItem_Then_ExpectedException() {
         when(itemGateway.countByClientId(anyLong())).thenReturn(20L);
 
         var validItem = MockUtil.getValidItem();
