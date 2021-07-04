@@ -4,9 +4,8 @@ COPY pom.xml /tmp/
 COPY wishlist-api /tmp/wishlist-api/
 COPY wishlist-core /tmp/wishlist-core/
 COPY wishlist-dataprovider /tmp/wishlist-dataprovider/
-WORKDIR /tmp/
 
-RUN mvn dependency:go-offline
+WORKDIR /tmp/
 
 RUN mvn package
 
