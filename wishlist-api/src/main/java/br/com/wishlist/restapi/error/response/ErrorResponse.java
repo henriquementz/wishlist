@@ -1,6 +1,5 @@
 package br.com.wishlist.restapi.error.response;
 
-import br.com.wishlist.restapi.model.response.MetaResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
