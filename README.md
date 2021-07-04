@@ -11,6 +11,10 @@
 - Project Lombok
 - Junit 5
 
+## Testes
+
+![image](https://user-images.githubusercontent.com/8506455/124397390-ea369800-dce5-11eb-937c-b712483ddd8b.png)
+
 ## Rodar serviço localmente 
 
 ### Requerimentos 
