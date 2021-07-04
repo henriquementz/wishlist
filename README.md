@@ -3,6 +3,11 @@
 # Wishlist - Desafio técnico
 > API responsável pelo gerenciamento de uma lista de desejos. 
 
+Neste projeto usei o modelo arquitetural Clean Architecture, com a motivação de manter a regra de negócio e os domínios isolados de qualquer comunicação, banco de dados ou cliente externo. 
+
+![1_O4pMWCi5kZi20SNOR6V33Q](https://user-images.githubusercontent.com/8506455/124397806-79dd4600-dce8-11eb-8097-e3b91c9442c8.png)
+
+
 ## Stack 
 - Java 11 
 - Maven 3.6
