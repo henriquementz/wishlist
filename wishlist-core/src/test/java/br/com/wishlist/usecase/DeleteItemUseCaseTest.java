@@ -1,6 +1,6 @@
 package br.com.wishlist.usecase;
 
-import br.com.wishlist.error.exception.WishlistProductNotFoundException;
+import br.com.wishlist.error.exception.ApiException;
 import br.com.wishlist.gateway.ItemGateway;
 import br.com.wishlist.util.MockUtil;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ class DeleteItemUseCaseTest {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.empty());
 
-        assertThrows(WishlistProductNotFoundException.class, () -> {
+        assertThrows(ApiException.class, () -> {
             deleteItemUseCase.delete(validItem.getClientId(), validItem.getItemId());
         });
 

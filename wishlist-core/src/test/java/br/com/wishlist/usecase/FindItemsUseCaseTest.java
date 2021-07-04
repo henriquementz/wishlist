@@ -1,6 +1,6 @@
 package br.com.wishlist.usecase;
 
-import br.com.wishlist.error.exception.WishlistProductNotFoundException;
+import br.com.wishlist.error.exception.ApiException;
 import br.com.wishlist.gateway.ItemGateway;
 import br.com.wishlist.util.MockUtil;
 import org.junit.jupiter.api.Test;
@@ -43,19 +43,19 @@ class FindItemsUseCaseTest {
     }
 
     @Test
-    public void given_ExistentProductIdInClientWishlist_When_FindByProductId_Then_ExpectedItem() {
+    public void given_ExistentItemIdInClientWishlist_When_FindByItemId_Then_ExpectedItem() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.of(validItem));
-        findItemsUseCase.findByProductId(validItem.getClientId(), validItem.getItemId());
+        findItemsUseCase.findByItemId(validItem.getClientId(), validItem.getItemId());
         verify(itemGateway).find(validItem.getClientId(), validItem.getItemId());
     }
 
     @Test
-    public void given_NonexistentProductIdInClientWishlist_When_FindByProductId_Then_ExpectedException() {
+    public void given_NonexistentItemtIdInClientWishlist_When_findByItemId_Then_ExpectedException() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.empty());
-        assertThrows(WishlistProductNotFoundException.class,
-                () -> findItemsUseCase.findByProductId(validItem.getClientId(), validItem.getItemId()));
+        assertThrows(ApiException.class,
+                () -> findItemsUseCase.findByItemId(validItem.getClientId(), validItem.getItemId()));
         verify(itemGateway).find(validItem.getClientId(), validItem.getItemId());
     }
 

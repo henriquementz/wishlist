@@ -1,7 +1,6 @@
 package br.com.wishlist.usecase;
 
-import br.com.wishlist.error.exception.WishListProductAlreadyAddedException;
-import br.com.wishlist.error.exception.WishlistItemExceededException;
+import br.com.wishlist.error.exception.ApiException;
 import br.com.wishlist.gateway.ItemGateway;
 import br.com.wishlist.util.MockUtil;
 import org.junit.jupiter.api.Test;
@@ -43,7 +42,7 @@ class AddItemUseCaseTest {
 
         var validItem = MockUtil.getValidItem();
 
-        assertThrows(WishListProductAlreadyAddedException.class, () -> addItemUseCase.add(validItem));
+        assertThrows(ApiException.class, () -> addItemUseCase.add(validItem));
 
         verify(itemGateway).countByClientId(validItem.getClientId());
         verify(itemGateway).isAlreadyAdded(validItem.getClientId(), validItem.getItemId());
@@ -56,7 +55,7 @@ class AddItemUseCaseTest {
 
         var validItem = MockUtil.getValidItem();
 
-        assertThrows(WishlistItemExceededException.class, () -> addItemUseCase.add(validItem));
+        assertThrows(ApiException.class, () -> addItemUseCase.add(validItem));
 
         verify(itemGateway).countByClientId(validItem.getClientId());
         verify(itemGateway, times(0)).isAlreadyAdded(validItem.getClientId(), validItem.getItemId());

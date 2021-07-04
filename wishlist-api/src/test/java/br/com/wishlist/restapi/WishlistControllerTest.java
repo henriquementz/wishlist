@@ -70,23 +70,23 @@ class WishlistControllerTest {
     }
 
     @Test
-    public void given_ClientWithWishList_When_findByProductId_Then_ExpectedItemResponse() throws Exception {
+    public void given_ClientWithWishList_When_findByItemId_Then_ExpectedItemResponse() throws Exception {
 
-        when(findItemsUseCase.findByProductId(anyLong(), anyLong())).thenReturn(mockUtil.getValidItem());
+        when(findItemsUseCase.findByItemId(anyLong(), anyLong())).thenReturn(mockUtil.getValidItem());
 
         this.mockMvc.perform(
-                get("/api/wishlist/1/product/342324")
+                get("/api/wishlist/1/item/342324")
                         .accept(MediaType.APPLICATION_JSON)
                         .header("Content-Type", "application/json"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void given_ClientWithWishList_When_deleteProduct_Then_ExpectedItemDeleted() throws Exception {
+    public void given_ClientWithWishList_When_delete_Then_ExpectedItemDeleted() throws Exception {
 
         doNothing().when(deleteItemUseCase).delete(anyLong(), anyLong());
 
-        this.mockMvc.perform(delete("/api/wishlist/1/product/342324"))
+        this.mockMvc.perform(delete("/api/wishlist/1/item/342324"))
                 .andExpect(status().isOk());
     }
 

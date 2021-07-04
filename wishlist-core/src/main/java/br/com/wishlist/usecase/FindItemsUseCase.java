@@ -26,16 +26,16 @@ public class FindItemsUseCase {
         return itemGateway.countAll(clientId);
     }
 
-    public Item findByProductId(final Long clientId, final Long productId) {
+    public Item findByItemId(final Long clientId, final Long itemId) {
 
-        var itemOptional = itemGateway.find(clientId, productId);
+        var itemOptional = itemGateway.find(clientId, itemId);
 
         if (itemOptional.isEmpty()) {
-            log.error("WISHLIST_ITEM_FIND | Product was not found on wishlist.");
+            log.error("WISHLIST_ITEM_FIND | Item was not found on wishlist.");
             throw new ApiException(WishListErrorCode.WISHLIST_ITEM_NOT_FOUND);
         }
 
-        log.info("WISHLIST_ITEM_FOUND | Product was retrieved successfully: {}", itemOptional.get());
+        log.info("WISHLIST_ITEM_FOUND | Item was retrieved successfully: {}", itemOptional.get());
 
         return itemOptional.get();
     }
