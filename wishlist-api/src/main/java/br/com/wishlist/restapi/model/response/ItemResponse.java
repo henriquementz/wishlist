@@ -21,5 +21,4 @@ public class ItemResponse {
     private final Long desired;
     private final Long bought;
 
-
 }

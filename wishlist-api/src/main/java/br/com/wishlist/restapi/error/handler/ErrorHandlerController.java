@@ -47,7 +47,7 @@ public class ErrorHandlerController {
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ApiErrorResponse> handleInvalidParams(MethodArgumentTypeMismatchException ex, Locale locale) {
 		log.error(INVALID_PARAM, ex);
 		ApiException e = new ApiException(WishListErrorCode.INVALID_URI, HttpStatus.BAD_REQUEST);

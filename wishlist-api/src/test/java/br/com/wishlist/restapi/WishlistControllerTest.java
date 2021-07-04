@@ -2,6 +2,7 @@ package br.com.wishlist.restapi;
 
 import br.com.wishlist.ApiApplication;
 import br.com.wishlist.error.exception.ApiException;
+import br.com.wishlist.error.exception.WishListErrorCode;
 import br.com.wishlist.usecase.AddItemUseCase;
 import br.com.wishlist.usecase.DeleteItemUseCase;
 import br.com.wishlist.usecase.FindItemsUseCase;
@@ -54,6 +55,32 @@ class WishlistControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .header("Content-Type", "application/json"))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void given_ValidItemRequestWithDatabaseOut_When_add_Then_ExpectedInternalServerError() throws Exception {
+
+        when(addItemUseCase.add(any())).thenThrow(new RuntimeException("Database Error"));
+
+        this.mockMvc.perform(
+                post("/api/wishlist/1/add")
+                        .content(mockUtil.getJsonItemRequest())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("Content-Type", "application/json"))
+                .andExpect(status().is5xxServerError());
+    }
+
+    @Test
+    public void given_ValidItemRequestWithWishlistFully_When_add_Then_ExpectedBadRequest() throws Exception {
+
+        when(addItemUseCase.add(any())).thenThrow(new ApiException(WishListErrorCode.WISHLIST_LENGTH_ERROR));
+
+        this.mockMvc.perform(
+                post("/api/wishlist/1/add")
+                        .content(mockUtil.getJsonItemRequest())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("Content-Type", "application/json"))
+                .andExpect(status().is4xxClientError());
     }
 
     @Test

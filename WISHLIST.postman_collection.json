@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "57217a8a-184a-4501-8c1f-54ee8319ba0a",
+		"name": "WISHLIST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"item_id\":377888432, \"desired\": 2 }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/wishlist/1/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"1",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"item_id\":377888432, \"desired\": 2 }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/wishlist/1/item/377888432",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"1",
+						"item",
+						"377888432"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"item_id\":377888432, \"desired\": 2 }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/wishlist/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"item_id\":377888432, \"desired\": 2 }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/wishlist/1/item/377888432",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"1",
+						"item",
+						"377888432"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

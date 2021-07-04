@@ -10,8 +10,6 @@ import java.util.List;
 @Getter
 @ToString
 public class PageItemResponse {
-
     private final List<ItemResponse> itens;
     private final Long quantity;
-
 }
