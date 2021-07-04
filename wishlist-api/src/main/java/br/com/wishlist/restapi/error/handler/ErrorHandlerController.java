@@ -21,7 +21,7 @@ import java.util.Locale;
 @RestControllerAdvice
 public class ErrorHandlerController {
 
-	private static final String PARAMETRO_INVALIDO = "Parâmetro Inválido";
+	private static final String INVALID_PARAM = "Invalid Param";
 
 	private MessageSource messageSource;
 
@@ -32,55 +32,55 @@ public class ErrorHandlerController {
 
     @ExceptionHandler
     public ResponseEntity<ApiErrorResponse> handleApiException(ApiException ex, Locale locale) {
-    	String mensagem = ApiErrorResponseUtil.getMessage(ex, messageSource, locale);
-		log.error("Erro tratado na API com codigo {}. {}", ex.getCodigoErro(), mensagem, ex);
-		ApiErrorResponse error = new ApiErrorResponse(ex, mensagem, locale);
+    	var message = ApiErrorResponseUtil.getMessage(ex, messageSource, locale);
+		log.error("Error handled on API with Code {}: {}", ex.getCodigoErro(), message, ex);
+		ApiErrorResponse error = new ApiErrorResponse(ex, message, locale);
 		return new ResponseEntity<>(error, ex.getHttpStatus());
     }
 
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<ApiErrorResponse> handleThrowable(Throwable ex, Locale locale) {
-		log.error("Erro inesperado na API", ex);
+		log.error("Unexpected Error", ex);
 		ApiException e = new ApiException(WishListErrorCode.ERRO_INTERNO_SERVIDOR, HttpStatus.INTERNAL_SERVER_ERROR);
-		String mensagem = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
-		ApiErrorResponse error = new ApiErrorResponse(e, mensagem , locale);
+		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
+		ApiErrorResponse error = new ApiErrorResponse(e, message , locale);
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ApiErrorResponse> handleInvalidParams(MethodArgumentTypeMismatchException ex, Locale locale) {
-		log.error(PARAMETRO_INVALIDO, ex);
+		log.error(INVALID_PARAM, ex);
 		ApiException e = new ApiException(WishListErrorCode.URL_INVALIDA, HttpStatus.BAD_REQUEST);
-		String mensagem = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
-		ApiErrorResponse error = new ApiErrorResponse(e, mensagem, locale);
+		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
+		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
         return new ResponseEntity<>(error, e.getHttpStatus());
     }
     
     @ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ApiErrorResponse> handleInvalidParams(MethodArgumentNotValidException ex, Locale locale) {
-		log.error(PARAMETRO_INVALIDO, ex);
+		log.error(INVALID_PARAM, ex);
 		ApiException e = new ApiException(WishListErrorCode.PARAMETRO_OBRIGATORIO, HttpStatus.BAD_REQUEST);
-		String mensagem = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
-		ApiErrorResponse error = new ApiErrorResponse(e, mensagem, locale);
+		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
+		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
     
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ApiErrorResponse> handleInvalidParams(HttpMessageNotReadableException ex, Locale locale) {
-		log.error(PARAMETRO_INVALIDO, ex);
+		log.error(INVALID_PARAM, ex);
 		ApiException e = new ApiException(WishListErrorCode.PARAMETRO_INVALIDO, HttpStatus.BAD_REQUEST);
-		String mensagem = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
-		ApiErrorResponse error = new ApiErrorResponse(e, mensagem, locale);
+		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
+		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
     	return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
     
     @ExceptionHandler(MissingServletRequestParameterException.class)
 	public ResponseEntity<ApiErrorResponse> handleInvalidParams(MissingServletRequestParameterException ex,
 			Locale locale) {
-		log.error("Parâmetro obrigatório não informado", ex);
+		log.error("Required param missing", ex);
 		ApiException e = new ApiException(WishListErrorCode.PARAMETRO_OBRIGATORIO, HttpStatus.BAD_REQUEST);
-		String mensagem = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
-		ApiErrorResponse error = new ApiErrorResponse(e, mensagem, locale);
+		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
+		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
