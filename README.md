@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/henriquementz/wishlist/tree/main.svg?style=svg&circle-token=474393a6e100a934dd80c4f3347accb9d58bb10f)](https://circleci.com/gh/henriquementz/wishlist/tree/main)
 
-# Wishlist - Desafio técnico
+# Wishlist
 > API responsável pelo gerenciamento de uma lista de desejos. 
 
 Neste projeto usei o modelo arquitetural Clean Architecture, com a motivação de manter a regra de negócio e os domínios isolados de qualquer comunicação, banco de dados ou cliente externo. O ponto principal da arquitetura é que "os elementos de um círculo interno não podem saber nada sobre os elementos do circulo externo." (MARTIN, 2019). 
