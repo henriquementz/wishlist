@@ -21,9 +21,7 @@ spring:
     banner-mode: off
   data:
     mongodb:
-      host: '${MONGO_HOST:mongo_db}'
-      port: 27017
-      database: wishlist
+      uri: mongodb://localhost:27017/wishlist
 
 
 logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta([%t]) %m%n"

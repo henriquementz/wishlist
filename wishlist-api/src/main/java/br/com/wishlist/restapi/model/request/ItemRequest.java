@@ -6,7 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Builder
 @Getter
@@ -14,10 +15,10 @@ import javax.validation.constraints.NotEmpty;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ItemRequest {
 
-    @NotEmpty
+    @NotNull
     private final Long productId;
 
-    @NotEmpty
+    @NotNull
     private final Long desired;
 
 }

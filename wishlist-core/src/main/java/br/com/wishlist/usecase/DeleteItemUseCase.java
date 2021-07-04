@@ -1,5 +1,7 @@
 package br.com.wishlist.usecase;
 
+import br.com.wishlist.error.exception.ApiException;
+import br.com.wishlist.error.exception.WishListErrorCode;
 import br.com.wishlist.error.exception.WishlistProductNotFoundException;
 import br.com.wishlist.gateway.ItemGateway;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,7 @@ public class DeleteItemUseCase {
 
         if (itemOptional.isEmpty()) {
             log.error("ERROR_WISHLIST_ITEM_DELETE | Product was not found on wishlist: {}.", productId);
-            throw new WishlistProductNotFoundException("Produto não encontrado na Wishlist");
+            throw new ApiException(WishListErrorCode.WISHLIST_ITEM_NOT_FOUND);
         }
 
         itemGateway.deleteProduct(clientId, productId);

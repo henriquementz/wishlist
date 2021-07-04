@@ -1,6 +1,8 @@
 package br.com.wishlist.usecase;
 
 import br.com.wishlist.domain.Item;
+import br.com.wishlist.error.exception.ApiException;
+import br.com.wishlist.error.exception.WishListErrorCode;
 import br.com.wishlist.error.exception.WishlistProductNotFoundException;
 import br.com.wishlist.gateway.ItemGateway;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,7 @@ public class FindItemsUseCase {
 
         if (itemOptional.isEmpty()) {
             log.error("WISHLIST_ITEM_FIND | Product was not found on wishlist.");
-            throw new WishlistProductNotFoundException("Produto não encontrado na Wishlist");
+            throw new ApiException(WishListErrorCode.WISHLIST_ITEM_NOT_FOUND);
         }
 
         log.info("WISHLIST_ITEM_FOUND | Product was retrieved successfully: {}", itemOptional.get());

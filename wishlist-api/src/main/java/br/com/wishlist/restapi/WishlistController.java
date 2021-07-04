@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -30,7 +32,7 @@ public class WishlistController {
     private DeleteItemUseCase deleteItemUseCase;
 
     @PostMapping(value = "/{clientId}/add")
-    public ResponseEntity<ItemResponse> post(@RequestBody ItemRequest itemRequest, @PathVariable Long clientId) {
+    public ResponseEntity<ItemResponse> post(@Valid @RequestBody ItemRequest itemRequest, @PathVariable Long clientId) {
         Item response = addItemUseCase.add(GroupMapper.mapFromRequest(itemRequest, clientId));
         return new ResponseEntity<>(GroupMapper.mapFromDomain(response), HttpStatus.CREATED);
     }

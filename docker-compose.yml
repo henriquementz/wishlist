@@ -1,15 +1,8 @@
 version: "3.7"
 services:
-    api_service:
-        build: .
+    mongo_dev:
+        container_name: mongodb
+        image: mongo:latest
         restart: always
         ports:
-            - 8080:8080
-        depends_on:
-            - mongo_db
-        image: henriquementz/wishlist
-    mongo_db:
-        image: "mongo:4.4.3"
-        restart: always
-        ports:
-            - 27017:27017
+            - "27017:27017"
