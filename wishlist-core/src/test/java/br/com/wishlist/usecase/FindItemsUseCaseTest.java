@@ -35,7 +35,7 @@ class FindItemsUseCaseTest {
     }
 
     @Test
-    public void given_AClientHasItemsOnWishlist_When_CountAll_Then_ExpectedItemsQuantity() {
+    public void given_AClientHasItemsOnWishlist_When_Count_Then_ExpectedItemsQuantity() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.count(validItem.getClientId())).thenReturn(1L);
         findItemsUseCase.count(validItem.getClientId());
@@ -43,7 +43,7 @@ class FindItemsUseCaseTest {
     }
 
     @Test
-    public void given_ExistentItemIdInClientWishlist_When_FindByItemId_Then_ExpectedItem() {
+    public void given_ExistentItemIdInClientWishlist_When_Find_Then_ExpectedItem() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.of(validItem));
         findItemsUseCase.find(validItem.getClientId(), validItem.getItemId());
@@ -51,7 +51,7 @@ class FindItemsUseCaseTest {
     }
 
     @Test
-    public void given_NonexistentItemtIdInClientWishlist_When_findByItemId_Then_ExpectedException() {
+    public void given_NonexistentItemtIdInClientWishlist_When_find_Then_ExpectedException() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.empty());
         assertThrows(ApiException.class,

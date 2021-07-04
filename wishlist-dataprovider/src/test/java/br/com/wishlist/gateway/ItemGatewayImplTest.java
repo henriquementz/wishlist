@@ -42,7 +42,7 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_ItemInClientWishlist_When_isItemAlreadyAdded_Then_ExpectedTrue() {
+    public void given_ItemInClientWishlist_When_isAlreadyAdded_Then_ExpectedTrue() {
         var validItemDomain = MockUtil.getValidItem();
 
         when(itemRepository.countByClientIdAndItemId(validItemDomain.getClientId(),
@@ -58,7 +58,7 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_ItemNotInClientWishlist_When_isItemAlreadyAdded_Then_ExpectedFalse() {
+    public void given_ItemNotInClientWishlist_When_isAlreadyAdded_Then_ExpectedFalse() {
         var validItemDomain = MockUtil.getValidItem();
 
         when(itemRepository.countByClientIdAndItemId(validItemDomain.getClientId(),
@@ -74,7 +74,7 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_AValidItemInWishlist_When_deleteItem_Then_ExpectedDeleteItem() {
+    public void given_AValidItemInWishlist_When_delete_Then_ExpectedDeleteItem() {
         var validItemDomain = MockUtil.getValidItem();
         itemGateway.delete(validItemDomain.getClientId(), validItemDomain.getItemId());
         verify(itemRepository).deleteByClientIdAndItemId(validItemDomain.getClientId(),
@@ -96,7 +96,7 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_AValidItemInWishlist_When_findItem_Then_ExpectedItem() {
+    public void given_AValidItemInWishlist_When_find_Then_ExpectedItem() {
         var validItemDomain = MockUtil.getValidItem();
 
         when(itemRepository.findByClientIdAndItemId(validItemDomain.getClientId(),
@@ -111,7 +111,7 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_AnItemNotInWishlist_When_findItem_Then_ExpectedEmpty() {
+    public void given_AnItemNotInWishlist_When_find_Then_ExpectedEmpty() {
         var validItemDomain = MockUtil.getValidItem();
 
         when(itemRepository.findByClientIdAndItemId(validItemDomain.getClientId(),
@@ -126,7 +126,7 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_AValidClient_When_countAll_Then_ExpectedQuantityOfItems() {
+    public void given_AValidClient_When_countByClientId_Then_ExpectedQuantityOfItems() {
         var validItemDomain = MockUtil.getValidItem();
         when(itemRepository.countByClientId(validItemDomain.getClientId())).thenReturn(1L);
         var quantity = itemGateway.countByClientId(validItemDomain.getClientId());

@@ -25,7 +25,7 @@ class DeleteItemUseCaseTest {
     private ItemGateway itemGateway;
 
     @Test
-    public void given_ItemSavedOnDatabase_When_DeleteItem_Then_ExpectedItemDeleted() {
+    public void given_ItemSavedOnDatabase_When_Delete_Then_ExpectedItemDeleted() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(anyLong(), anyLong())).thenReturn(Optional.of(validItem));
         deleteItemUseCase.delete(validItem.getClientId(), validItem.getItemId());
@@ -33,7 +33,7 @@ class DeleteItemUseCaseTest {
     }
 
     @Test
-    public void given_ItemNotSavedOnDatabase_When_DeleteItem_Then_ExpectedException() {
+    public void given_ItemNotSavedOnDatabase_When_Delete_Then_ExpectedException() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.empty());
 
