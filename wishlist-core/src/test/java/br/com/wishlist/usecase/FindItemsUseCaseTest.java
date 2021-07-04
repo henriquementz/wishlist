@@ -51,7 +51,7 @@ class FindItemsUseCaseTest {
     }
 
     @Test
-    public void given_NonexistentItemtIdInClientWishlist_When_find_Then_ExpectedException() {
+    public void given_NonexistentItemIdInClientWishlist_When_find_Then_ExpectedException() {
         var validItem = MockUtil.getValidItem();
         when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.empty());
         assertThrows(ApiException.class,
