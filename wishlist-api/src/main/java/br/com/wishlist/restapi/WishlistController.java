@@ -46,7 +46,7 @@ public class WishlistController {
         return ResponseEntity.ok(GroupMapper.mapFromDomain(response, quantity));
     }
 
-    @GetMapping(value = "/{clientId}/item/{productId}")
+    @GetMapping(value = "/{clientId}/item/{itemId}")
     public ResponseEntity<ItemResponse> get(@PathVariable Long clientId, @PathVariable Long itemId) {
         Item response = findItemsUseCase.findByItemId(clientId, itemId);
         return ResponseEntity.ok(GroupMapper.mapFromDomain(response));
