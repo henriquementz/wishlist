@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class ItemRequest {
 
     @NotNull
-    private final Long productId;
+    private final Long itemId;
 
     @NotNull
     private final Long desired;

@@ -1,18 +1,14 @@
 package br.com.wishlist.restapi;
 
 import br.com.wishlist.ApiApplication;
-import br.com.wishlist.restapi.model.request.ItemRequest;
 import br.com.wishlist.usecase.AddItemUseCase;
 import br.com.wishlist.usecase.DeleteItemUseCase;
 import br.com.wishlist.usecase.FindItemsUseCase;
 import br.com.wishlist.util.MockUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.Mockito.*;
 
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -88,7 +84,7 @@ class WishlistControllerTest {
     @Test
     public void given_ClientWithWishList_When_deleteProduct_Then_ExpectedItemDeleted() throws Exception {
 
-        doNothing().when(deleteItemUseCase).deleteProduct(anyLong(), anyLong());
+        doNothing().when(deleteItemUseCase).delete(anyLong(), anyLong());
 
         this.mockMvc.perform(delete("/api/wishlist/1/product/342324"))
                 .andExpect(status().isOk());

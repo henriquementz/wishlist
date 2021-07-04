@@ -17,7 +17,7 @@ public final class GroupMapper {
         return Item.builder()
             .clientId(clientId)
             .desired(itemRequest.getDesired())
-            .productId(itemRequest.getProductId())
+            .itemId(itemRequest.getItemId())
             .build();
     }
 
@@ -26,7 +26,7 @@ public final class GroupMapper {
             .clientId(item.getClientId())
             .desired(item.getDesired())
             .bought(item.getBought())
-            .productId(item.getProductId())
+            .itemId(item.getItemId())
             .id(item.getId())
             .addedAt(item.getAddedAt())
             .build();

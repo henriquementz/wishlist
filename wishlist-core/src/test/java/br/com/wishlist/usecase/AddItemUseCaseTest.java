@@ -26,27 +26,27 @@ class AddItemUseCaseTest {
     @Test
     public void given_WishlistWithLessThan20Items_When_SaveValidItem_Then_ExpectedItemSaved() {
         when(itemGateway.countByClientId(anyLong())).thenReturn(19L);
-        when(itemGateway.isProductAlreadyAdded(anyLong(), anyLong())).thenReturn(false);
+        when(itemGateway.isAlreadyAdded(anyLong(), anyLong())).thenReturn(false);
 
         var validItem = MockUtil.getValidItem();
         addItemUseCase.add(validItem);
 
         verify(itemGateway).countByClientId(validItem.getClientId());
-        verify(itemGateway).isProductAlreadyAdded(validItem.getClientId(), validItem.getProductId());
+        verify(itemGateway).isAlreadyAdded(validItem.getClientId(), validItem.getItemId());
 
     }
 
     @Test
     public void given_WishlistWithLessThan20Items_When_SaveAlreadySavedItem_Then_ExpectedException() {
         when(itemGateway.countByClientId(anyLong())).thenReturn(19L);
-        when(itemGateway.isProductAlreadyAdded(anyLong(), anyLong())).thenReturn(true);
+        when(itemGateway.isAlreadyAdded(anyLong(), anyLong())).thenReturn(true);
 
         var validItem = MockUtil.getValidItem();
 
         assertThrows(WishListProductAlreadyAddedException.class, () -> addItemUseCase.add(validItem));
 
         verify(itemGateway).countByClientId(validItem.getClientId());
-        verify(itemGateway).isProductAlreadyAdded(validItem.getClientId(), validItem.getProductId());
+        verify(itemGateway).isAlreadyAdded(validItem.getClientId(), validItem.getItemId());
 
     }
 
@@ -59,7 +59,7 @@ class AddItemUseCaseTest {
         assertThrows(WishlistItemExceededException.class, () -> addItemUseCase.add(validItem));
 
         verify(itemGateway).countByClientId(validItem.getClientId());
-        verify(itemGateway, times(0)).isProductAlreadyAdded(validItem.getClientId(), validItem.getProductId());
+        verify(itemGateway, times(0)).isAlreadyAdded(validItem.getClientId(), validItem.getItemId());
 
     }
 

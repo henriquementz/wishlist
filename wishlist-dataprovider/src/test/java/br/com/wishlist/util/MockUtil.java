@@ -11,7 +11,7 @@ public final class MockUtil {
     public static ItemEntity getValidItemEntity() {
         return ItemEntity.builder()
                 .id("54326")
-                .productId(484378432L)
+                .itemId(484378432L)
                 .clientId(1L)
                 .bought(0L)
                 .desired(3L)
@@ -21,7 +21,7 @@ public final class MockUtil {
 
     public static Item getValidItem() {
         return Item.builder()
-                .productId(484378432L)
+                .itemId(484378432L)
                 .clientId(1L)
                 .desired(1L)
                 .build();

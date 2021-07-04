@@ -45,18 +45,18 @@ class FindItemsUseCaseTest {
     @Test
     public void given_ExistentProductIdInClientWishlist_When_FindByProductId_Then_ExpectedItem() {
         var validItem = MockUtil.getValidItem();
-        when(itemGateway.findProduct(validItem.getClientId(), validItem.getProductId())).thenReturn(Optional.of(validItem));
-        findItemsUseCase.findByProductId(validItem.getClientId(), validItem.getProductId());
-        verify(itemGateway).findProduct(validItem.getClientId(), validItem.getProductId());
+        when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.of(validItem));
+        findItemsUseCase.findByProductId(validItem.getClientId(), validItem.getItemId());
+        verify(itemGateway).find(validItem.getClientId(), validItem.getItemId());
     }
 
     @Test
     public void given_NonexistentProductIdInClientWishlist_When_FindByProductId_Then_ExpectedException() {
         var validItem = MockUtil.getValidItem();
-        when(itemGateway.findProduct(validItem.getClientId(), validItem.getProductId())).thenReturn(Optional.empty());
+        when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.empty());
         assertThrows(WishlistProductNotFoundException.class,
-                () -> findItemsUseCase.findByProductId(validItem.getClientId(), validItem.getProductId()));
-        verify(itemGateway).findProduct(validItem.getClientId(), validItem.getProductId());
+                () -> findItemsUseCase.findByProductId(validItem.getClientId(), validItem.getItemId()));
+        verify(itemGateway).find(validItem.getClientId(), validItem.getItemId());
     }
 
 }

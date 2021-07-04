@@ -14,14 +14,14 @@ import java.time.OffsetDateTime;
 @Builder
 @ToString
 @Document(collection = "items")
-@CompoundIndex(name = "product_id_client_id_index", def = "{ 'product_id': 1, 'client_id': 1 }", unique = true)
+@CompoundIndex(name = "product_id_client_id_index", def = "{ 'product_id': 1, 'item_id': 1 }", unique = true)
 public class ItemEntity {
 
     @Id
     private final String id;
 
-    @Field("product_id")
-    private final Long productId;
+    @Field("item_id")
+    private final Long itemId;
 
     @Field("client_id")
     private final Long clientId;

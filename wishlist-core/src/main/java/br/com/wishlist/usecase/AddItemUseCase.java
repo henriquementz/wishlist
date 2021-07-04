@@ -3,12 +3,9 @@ package br.com.wishlist.usecase;
 import br.com.wishlist.domain.Item;
 import br.com.wishlist.error.exception.ApiException;
 import br.com.wishlist.error.exception.WishListErrorCode;
-import br.com.wishlist.error.exception.WishListProductAlreadyAddedException;
-import br.com.wishlist.error.exception.WishlistItemExceededException;
 import br.com.wishlist.gateway.ItemGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,29 +13,26 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AddItemUseCase {
 
+    public static final int MAXIMUM_WISHLIST_LENGTH = 20;
+
     private final ItemGateway itemGateway;
 
     public Item add(final Item item) {
 
-        log.info("WISHLIST_ITEM_SAVE | Item was saved successfully | Item: {}", item);
-
         var itemsOnWishlist = itemGateway.countByClientId(item.getClientId());
 
-        log.info("WISHLIST_ITEM_SAVE | Wishlist has {} item(s)", itemsOnWishlist);
-
-        if (itemsOnWishlist >= 20) {
-
+        if (itemsOnWishlist >= MAXIMUM_WISHLIST_LENGTH) {
             log.error("ERROR_WISHLIST_ITEM_SAVE | Wishlist is fully.");
             throw new ApiException(WishListErrorCode.WISHLIST_LENGTH_ERROR);
-
-        } else if (itemGateway.isProductAlreadyAdded(item.getClientId(), item.getProductId())) {
-
+        } else if (itemGateway.isAlreadyAdded(item.getClientId(), item.getItemId())) {
             log.error("ERROR_WISHLIST_ITEM_SAVE | Product is already saved on wishlist.");
             throw new ApiException(WishListErrorCode.WISHLIST_ITEM_ALREADY_ADDED);
-
         }
 
-        return itemGateway.save(item);
+        var itemSaved = itemGateway.save(item);
+        log.error("WISHLIST_ITEM_SAVED | Item was saved successfully on wishlist: {}.", itemSaved);
+
+        return itemSaved;
     }
 
 }

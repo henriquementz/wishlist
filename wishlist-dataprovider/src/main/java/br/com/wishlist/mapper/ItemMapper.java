@@ -16,7 +16,7 @@ public final class ItemMapper {
             .bought(0L)
             .desired(item.getDesired())
             .clientId(item.getClientId())
-            .productId(item.getProductId())
+            .itemId(item.getItemId())
             .build();
     }
 
@@ -25,7 +25,7 @@ public final class ItemMapper {
             .addedAt(itemEntity.getAddedAt())
             .bought(itemEntity.getBought())
             .desired(itemEntity.getDesired())
-            .productId(itemEntity.getProductId())
+            .itemId(itemEntity.getItemId())
             .id(itemEntity.getId())
             .clientId(itemEntity.getClientId())
             .build();

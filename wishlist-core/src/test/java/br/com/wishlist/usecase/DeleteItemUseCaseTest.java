@@ -27,21 +27,21 @@ class DeleteItemUseCaseTest {
     @Test
     public void given_ItemSavedOnDatabase_When_DeleteItem_Then_ExpectedItemDeleted() {
         var validItem = MockUtil.getValidItem();
-        when(itemGateway.findProduct(anyLong(), anyLong())).thenReturn(Optional.of(validItem));
-        deleteItemUseCase.deleteProduct(validItem.getClientId(), validItem.getProductId());
-        verify(itemGateway).deleteProduct(validItem.getClientId(), validItem.getProductId());
+        when(itemGateway.find(anyLong(), anyLong())).thenReturn(Optional.of(validItem));
+        deleteItemUseCase.delete(validItem.getClientId(), validItem.getItemId());
+        verify(itemGateway).delete(validItem.getClientId(), validItem.getItemId());
     }
 
     @Test
     public void given_ItemNotSavedOnDatabase_When_DeleteItem_Then_ExpectedException() {
         var validItem = MockUtil.getValidItem();
-        when(itemGateway.findProduct(validItem.getClientId(), validItem.getProductId())).thenReturn(Optional.empty());
+        when(itemGateway.find(validItem.getClientId(), validItem.getItemId())).thenReturn(Optional.empty());
 
         assertThrows(WishlistProductNotFoundException.class, () -> {
-            deleteItemUseCase.deleteProduct(validItem.getClientId(), validItem.getProductId());
+            deleteItemUseCase.delete(validItem.getClientId(), validItem.getItemId());
         });
 
-        verify(itemGateway, times(0)).deleteProduct(validItem.getClientId(), validItem.getProductId());
+        verify(itemGateway, times(0)).delete(validItem.getClientId(), validItem.getItemId());
     }
 
 }

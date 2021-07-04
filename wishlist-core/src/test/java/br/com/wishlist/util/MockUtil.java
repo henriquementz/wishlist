@@ -10,7 +10,7 @@ public final class MockUtil {
 
     public static Item getValidItem() {
         return Item.builder()
-                .productId(342324L)
+                .itemId(342324L)
                 .clientId(1L)
                 .build();
     }

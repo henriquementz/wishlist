@@ -1,7 +1,6 @@
 package br.com.wishlist.restapi.error.handler;
 
 import br.com.wishlist.error.exception.WishListErrorCode;
-import br.com.wishlist.restapi.error.handler.ApiErrorResponseUtil;
 import br.com.wishlist.error.exception.ApiException;
 import br.com.wishlist.restapi.error.response.ApiErrorResponse;
 import lombok.extern.slf4j.Slf4j;

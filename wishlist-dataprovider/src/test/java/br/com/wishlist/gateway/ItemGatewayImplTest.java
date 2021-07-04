@@ -1,7 +1,6 @@
 package br.com.wishlist.gateway;
 
 import br.com.wishlist.database.repository.ItemRepository;
-import br.com.wishlist.domain.Item;
 import br.com.wishlist.util.MockUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,43 +42,43 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_ItemInClientWishlist_When_isProductAlreadyAdded_Then_ExpectedTrue() {
+    public void given_ItemInClientWishlist_When_isItemAlreadyAdded_Then_ExpectedTrue() {
         var validItemDomain = MockUtil.getValidItem();
 
-        when(itemRepository.countByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId())).thenReturn(1L);
+        when(itemRepository.countByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId())).thenReturn(1L);
 
-        var isAlreadyAdded = itemGateway.isProductAlreadyAdded(validItemDomain.getClientId(),
-                validItemDomain.getProductId());
+        var isAlreadyAdded = itemGateway.isAlreadyAdded(validItemDomain.getClientId(),
+                validItemDomain.getItemId());
 
         assertTrue(isAlreadyAdded);
 
-        verify(itemRepository).countByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId());
+        verify(itemRepository).countByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId());
     }
 
     @Test
-    public void given_ItemNotInClientWishlist_When_isProductAlreadyAdded_Then_ExpectedFalse() {
+    public void given_ItemNotInClientWishlist_When_isItemAlreadyAdded_Then_ExpectedFalse() {
         var validItemDomain = MockUtil.getValidItem();
 
-        when(itemRepository.countByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId())).thenReturn(0L);
+        when(itemRepository.countByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId())).thenReturn(0L);
 
-        var isAlreadyAdded = itemGateway.isProductAlreadyAdded(validItemDomain.getClientId(),
-                validItemDomain.getProductId());
+        var isAlreadyAdded = itemGateway.isAlreadyAdded(validItemDomain.getClientId(),
+                validItemDomain.getItemId());
 
         assertFalse(isAlreadyAdded);
 
-        verify(itemRepository).countByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId());
+        verify(itemRepository).countByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId());
     }
 
     @Test
-    public void given_AValidItemInWishlist_When_deleteProduct_Then_ExpectedDeleteItem() {
+    public void given_AValidItemInWishlist_When_deleteItem_Then_ExpectedDeleteItem() {
         var validItemDomain = MockUtil.getValidItem();
-        itemGateway.deleteProduct(validItemDomain.getClientId(), validItemDomain.getProductId());
-        verify(itemRepository).deleteByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId());
+        itemGateway.delete(validItemDomain.getClientId(), validItemDomain.getItemId());
+        verify(itemRepository).deleteByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId());
     }
 
     @Test
@@ -97,33 +96,33 @@ class ItemGatewayImplTest {
     }
 
     @Test
-    public void given_AValidItemInWishlist_When_findProduct_Then_ExpectedItem() {
+    public void given_AValidItemInWishlist_When_findItem_Then_ExpectedItem() {
         var validItemDomain = MockUtil.getValidItem();
 
-        when(itemRepository.findByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId())).thenReturn(Optional.of(MockUtil.getValidItemEntity()));
+        when(itemRepository.findByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId())).thenReturn(Optional.of(MockUtil.getValidItemEntity()));
 
-        var item = itemGateway.findProduct(validItemDomain.getClientId(), validItemDomain.getProductId());
+        var item = itemGateway.find(validItemDomain.getClientId(), validItemDomain.getItemId());
 
         assertTrue(item.isPresent());
 
-        verify(itemRepository).findByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId());
+        verify(itemRepository).findByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId());
     }
 
     @Test
-    public void given_AnItemNotInWishlist_When_findProduct_Then_ExpectedEmpty() {
+    public void given_AnItemNotInWishlist_When_findItem_Then_ExpectedEmpty() {
         var validItemDomain = MockUtil.getValidItem();
 
-        when(itemRepository.findByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId())).thenReturn(Optional.empty());
+        when(itemRepository.findByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId())).thenReturn(Optional.empty());
 
-        var item = itemGateway.findProduct(validItemDomain.getClientId(), validItemDomain.getProductId());
+        var item = itemGateway.find(validItemDomain.getClientId(), validItemDomain.getItemId());
 
         assertTrue(item.isEmpty());
 
-        verify(itemRepository).findByClientIdAndProductId(validItemDomain.getClientId(),
-                validItemDomain.getProductId());
+        verify(itemRepository).findByClientIdAndItemId(validItemDomain.getClientId(),
+                validItemDomain.getItemId());
     }
 
     @Test

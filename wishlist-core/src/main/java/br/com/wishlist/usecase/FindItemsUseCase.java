@@ -3,7 +3,6 @@ package br.com.wishlist.usecase;
 import br.com.wishlist.domain.Item;
 import br.com.wishlist.error.exception.ApiException;
 import br.com.wishlist.error.exception.WishListErrorCode;
-import br.com.wishlist.error.exception.WishlistProductNotFoundException;
 import br.com.wishlist.gateway.ItemGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,7 @@ public class FindItemsUseCase {
 
     public Item findByProductId(final Long clientId, final Long productId) {
 
-        var itemOptional = itemGateway.findProduct(clientId, productId);
+        var itemOptional = itemGateway.find(clientId, productId);
 
         if (itemOptional.isEmpty()) {
             log.error("WISHLIST_ITEM_FIND | Product was not found on wishlist.");

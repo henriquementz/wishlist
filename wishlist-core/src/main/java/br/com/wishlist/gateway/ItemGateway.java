@@ -12,16 +12,16 @@ public interface ItemGateway {
 
     Item save(final Item item);
 
-    Long countByClientId(final Long clientId);
+    Optional<Item> find(final Long clientId, final Long productId);
 
     List<Item> findAll(final Long clientId, Pageable pageable);
 
-    Optional<Item> findProduct(final Long clientId, final Long productId);
+    Long countByClientId(final Long clientId);
 
     Long countAll(final Long clientId);
 
-    boolean isProductAlreadyAdded(final Long clientId, final Long productId);
+    boolean isAlreadyAdded(final Long clientId, final Long productId);
 
-    void deleteProduct(final Long clientId, final Long productId);
+    void delete(final Long clientId, final Long productId);
 
 }

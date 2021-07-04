@@ -36,7 +36,7 @@ class ItemRepositoryTest {
         assertEquals(validItemEntity.getBought(), itemEntitySaved.getBought());
         assertEquals(validItemEntity.getClientId(), itemEntitySaved.getClientId());
         assertEquals(validItemEntity.getDesired(), itemEntitySaved.getDesired());
-        assertEquals(validItemEntity.getProductId(), itemEntitySaved.getProductId());
+        assertEquals(validItemEntity.getItemId(), itemEntitySaved.getItemId());
     }
 
     @Order(2)
@@ -48,11 +48,11 @@ class ItemRepositoryTest {
 
     @Order(3)
     @Test
-    public void given_AClientWith1ItemInWishlist_When_CountByClientIdAndProductId_Then_Expected1() {
+    public void given_AClientWith1ItemInWishlist_When_CountByClientIdAndItemId_Then_Expected1() {
         var validItemEntity = MockUtil.getValidItemEntity();
 
-        var itemEntitySaved = itemRepository.countByClientIdAndProductId(validItemEntity.getClientId(),
-                validItemEntity.getProductId());
+        var itemEntitySaved = itemRepository.countByClientIdAndItemId(validItemEntity.getClientId(),
+                validItemEntity.getItemId());
 
         assertEquals(1L, itemEntitySaved);
     }
@@ -71,16 +71,16 @@ class ItemRepositoryTest {
         assertEquals(validItemEntity.getBought(), list.get(0).getBought());
         assertEquals(validItemEntity.getClientId(), list.get(0).getClientId());
         assertEquals(validItemEntity.getDesired(), list.get(0).getDesired());
-        assertEquals(validItemEntity.getProductId(), list.get(0).getProductId());
+        assertEquals(validItemEntity.getItemId(), list.get(0).getItemId());
     }
 
     @Order(5)
     @Test
-    public void given_AProductSavedInWishlist_When_deleteByClientIdAndProductId_Then_ExpectedItemDeleted() {
+    public void given_AItemSavedInWishlist_When_deleteByClientIdAndItemId_Then_ExpectedItemDeleted() {
         var validItemEntity = MockUtil.getValidItemEntity();
-        itemRepository.deleteByClientIdAndProductId(validItemEntity.getClientId(), validItemEntity.getProductId());
-        var itemEntitySaved = itemRepository.countByClientIdAndProductId(validItemEntity.getClientId(),
-                validItemEntity.getProductId());
+        itemRepository.deleteByClientIdAndItemId(validItemEntity.getClientId(), validItemEntity.getItemId());
+        var itemEntitySaved = itemRepository.countByClientIdAndItemId(validItemEntity.getClientId(),
+                validItemEntity.getItemId());
         assertEquals(0L, itemEntitySaved);
     }
 

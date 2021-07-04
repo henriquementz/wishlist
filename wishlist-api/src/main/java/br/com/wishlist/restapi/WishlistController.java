@@ -54,7 +54,7 @@ public class WishlistController {
 
     @DeleteMapping(value = "/{clientId}/product/{productId}")
     public ResponseEntity<Void> delete(@PathVariable Long clientId, @PathVariable Long productId) {
-        deleteItemUseCase.deleteProduct(clientId, productId);
+        deleteItemUseCase.delete(clientId, productId);
         return ResponseEntity.ok().build();
     }
 

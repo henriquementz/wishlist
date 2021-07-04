@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 public class Item {
 
     private final String id;
-    private final Long productId;
+    private final Long itemId;
     private final Long clientId;
     private final OffsetDateTime addedAt;
     private final Long desired;

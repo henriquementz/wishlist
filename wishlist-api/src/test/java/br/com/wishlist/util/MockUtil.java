@@ -19,7 +19,7 @@ public class MockUtil {
 
     public Item getValidItem() {
         return Item.builder()
-                .productId(342324L)
+                .itemId(342324L)
                 .clientId(1L)
                 .desired(1L)
                 .bought(0L)
@@ -35,7 +35,7 @@ public class MockUtil {
     public String getJsonItemRequest() throws JsonProcessingException {
         return toJson(ItemRequest.builder()
                 .desired(1L)
-                .productId(4343L)
+                .itemId(4343L)
                 .build());
     }
 

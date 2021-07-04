@@ -16,7 +16,7 @@ class ItemMapperTest {
         assertEquals(0L, validEntityItem.getBought());
         assertEquals(validDomainItem.getClientId(), validEntityItem.getClientId());
         assertEquals(validDomainItem.getDesired(), validEntityItem.getDesired());
-        assertEquals(validDomainItem.getProductId(), validEntityItem.getProductId());
+        assertEquals(validDomainItem.getItemId(), validEntityItem.getItemId());
     }
 
     @Test
@@ -29,7 +29,7 @@ class ItemMapperTest {
         assertEquals(validItemEntity.getBought(), validDomainItem.getBought());
         assertEquals(validItemEntity.getClientId(), validDomainItem.getClientId());
         assertEquals(validItemEntity.getDesired(), validDomainItem.getDesired());
-        assertEquals(validItemEntity.getProductId(), validDomainItem.getProductId());
+        assertEquals(validItemEntity.getItemId(), validDomainItem.getItemId());
     }
 
 }

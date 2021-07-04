@@ -33,13 +33,13 @@ public class ItemGatewayImpl implements ItemGateway {
     }
 
     @Override
-    public boolean isProductAlreadyAdded(final Long clientId, final Long productId) {
-        return itemRepository.countByClientIdAndProductId(clientId, productId) > 0;
+    public boolean isAlreadyAdded(final Long clientId, final Long productId) {
+        return itemRepository.countByClientIdAndItemId(clientId, productId) > 0;
     }
 
     @Override
-    public void deleteProduct(final Long clientId, final Long productId) {
-        itemRepository.deleteByClientIdAndProductId(clientId, productId);
+    public void delete(final Long clientId, final Long productId) {
+        itemRepository.deleteByClientIdAndItemId(clientId, productId);
         log.info("WISHLIST_ITEM_DELETED | Product was successfully deleted.");
     }
 
@@ -52,8 +52,8 @@ public class ItemGatewayImpl implements ItemGateway {
     }
 
     @Override
-    public Optional<Item> findProduct(final Long clientId, final Long productId) {
-        var productOptional = itemRepository.findByClientIdAndProductId(clientId, productId);
+    public Optional<Item> find(final Long clientId, final Long productId) {
+        var productOptional = itemRepository.findByClientIdAndItemId(clientId, productId);
 
          if (productOptional.isEmpty()) {
              return Optional.empty();
