@@ -24,3 +24,6 @@
 > Rode o seguinte comando: 
 `docker-compose up --build`
 
+### Chamadas para a aplicação 
+Você pode encontrar uma lista de request prontos nesta [Collection](https://github.com/henriquementz/wishlist/blob/main/WISHLIST.postman_collection.json)
+
