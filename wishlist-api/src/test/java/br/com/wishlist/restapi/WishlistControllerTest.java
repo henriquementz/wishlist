@@ -57,19 +57,6 @@ class WishlistControllerTest {
     }
 
     @Test
-    public void given_InvalidItemRequest_When_add_Then_ExpectedException() throws Exception {
-
-        when(addItemUseCase.add(any())).thenThrow(ApiException.class);
-
-        this.mockMvc.perform(
-                post("/api/wishlist/1/add")
-                        .content(mockUtil.getJsonItemRequest())
-                        .accept(MediaType.APPLICATION_JSON)
-                        .header("Content-Type", "application/json"))
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
     public void given_ClientWithWishList_When_get_Then_ExpectedPageOfItems() throws Exception {
 
         when(findItemsUseCase.findAll(anyLong(), any())).thenReturn(mockUtil.getListOfValidItems());
