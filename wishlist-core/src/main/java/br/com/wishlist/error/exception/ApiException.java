@@ -29,7 +29,7 @@ public class ApiException extends RuntimeException {
     }
 
     public ApiException(ErrorCode codigoErro) {
-        this(HttpStatus.PRECONDITION_FAILED, codigoErro);
+        this(HttpStatus.BAD_REQUEST, codigoErro);
     }
 
     public ApiException(ErrorCode codigoErro, HttpStatus httpStatus) {

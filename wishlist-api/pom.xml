@@ -25,6 +25,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-data-rest</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>br.com.wishlist</groupId>
             <artifactId>wishlist-core</artifactId>
             <version>0.0.1</version>

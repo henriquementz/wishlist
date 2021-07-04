@@ -2,6 +2,7 @@ package br.com.wishlist.restapi;
 
 import br.com.wishlist.domain.Item;
 import br.com.wishlist.restapi.mapper.GroupMapper;
+import br.com.wishlist.restapi.model.api.WishlistControllerApi;
 import br.com.wishlist.restapi.model.request.ItemRequest;
 import br.com.wishlist.restapi.model.response.ItemResponse;
 import br.com.wishlist.restapi.model.response.PageItemResponse;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/wishlist/")
-public class WishlistController {
+public class WishlistController implements WishlistControllerApi {
 
     @Autowired
     private AddItemUseCase addItemUseCase;
@@ -32,13 +33,13 @@ public class WishlistController {
     private DeleteItemUseCase deleteItemUseCase;
 
     @PostMapping(value = "/{clientId}/add")
-    public ResponseEntity<ItemResponse> post(@Valid @RequestBody ItemRequest itemRequest, @PathVariable Long clientId) {
+    public ResponseEntity<ItemResponse> add(@Valid @RequestBody ItemRequest itemRequest, @PathVariable Long clientId) {
         Item response = addItemUseCase.add(GroupMapper.mapFromRequest(itemRequest, clientId));
         return new ResponseEntity<>(GroupMapper.mapFromDomain(response), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{clientId}")
-    public ResponseEntity<PageItemResponse> get(@PathVariable Long clientId,
+    public ResponseEntity<PageItemResponse> getAll(@PathVariable Long clientId,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size) {
         List<Item> response = findItemsUseCase.findAll(clientId, PageRequest.of(page, size));
