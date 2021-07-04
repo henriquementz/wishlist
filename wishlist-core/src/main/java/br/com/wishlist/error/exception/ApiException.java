@@ -37,7 +37,7 @@ public class ApiException extends RuntimeException {
     }
 
     public static ApiException erroInternoServidor() {
-        return new ApiException(WishListErrorCode.ERRO_INTERNO_SERVIDOR,
+        return new ApiException(WishListErrorCode.INTERNAL_SERVER_ERROR,
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

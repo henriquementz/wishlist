@@ -18,7 +18,7 @@ public interface ItemGateway {
 
     Long countByClientId(final Long clientId);
 
-    Long countAll(final Long clientId);
+    Long count(final Long clientId);
 
     boolean isAlreadyAdded(final Long clientId, final Long productId);
 

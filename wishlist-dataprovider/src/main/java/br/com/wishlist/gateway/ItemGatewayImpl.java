@@ -64,7 +64,7 @@ public class ItemGatewayImpl implements ItemGateway {
     }
 
     @Override
-    public Long countAll(final Long clientId) {
+    public Long count(final Long clientId) {
         return itemRepository.countByClientId(clientId);
     }
 

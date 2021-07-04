@@ -22,11 +22,11 @@ public class FindItemsUseCase {
         return itemGateway.findAll(clientId, pageable);
     }
 
-    public Long countAll(final Long clientId) {
-        return itemGateway.countAll(clientId);
+    public Long count(final Long clientId) {
+        return itemGateway.count(clientId);
     }
 
-    public Item findByItemId(final Long clientId, final Long itemId) {
+    public Item find(final Long clientId, final Long itemId) {
 
         var itemOptional = itemGateway.find(clientId, itemId);
 

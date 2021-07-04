@@ -41,7 +41,7 @@ public class ErrorHandlerController {
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<ApiErrorResponse> handleThrowable(Throwable ex, Locale locale) {
 		log.error("Unexpected Error", ex);
-		ApiException e = new ApiException(WishListErrorCode.ERRO_INTERNO_SERVIDOR, HttpStatus.INTERNAL_SERVER_ERROR);
+		ApiException e = new ApiException(WishListErrorCode.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
 		ApiErrorResponse error = new ApiErrorResponse(e, message , locale);
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,7 +50,7 @@ public class ErrorHandlerController {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ApiErrorResponse> handleInvalidParams(MethodArgumentTypeMismatchException ex, Locale locale) {
 		log.error(INVALID_PARAM, ex);
-		ApiException e = new ApiException(WishListErrorCode.URL_INVALIDA, HttpStatus.BAD_REQUEST);
+		ApiException e = new ApiException(WishListErrorCode.INVALID_URI, HttpStatus.BAD_REQUEST);
 		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
 		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
         return new ResponseEntity<>(error, e.getHttpStatus());
@@ -59,7 +59,7 @@ public class ErrorHandlerController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ApiErrorResponse> handleInvalidParams(MethodArgumentNotValidException ex, Locale locale) {
 		log.error(INVALID_PARAM, ex);
-		ApiException e = new ApiException(WishListErrorCode.PARAMETRO_OBRIGATORIO, HttpStatus.BAD_REQUEST);
+		ApiException e = new ApiException(WishListErrorCode.PARAMETER_REQUIRED, HttpStatus.BAD_REQUEST);
 		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
 		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
@@ -68,7 +68,7 @@ public class ErrorHandlerController {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ApiErrorResponse> handleInvalidParams(HttpMessageNotReadableException ex, Locale locale) {
 		log.error(INVALID_PARAM, ex);
-		ApiException e = new ApiException(WishListErrorCode.PARAMETRO_INVALIDO, HttpStatus.BAD_REQUEST);
+		ApiException e = new ApiException(WishListErrorCode.INVALID_PARAMETER, HttpStatus.BAD_REQUEST);
 		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
 		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
     	return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class ErrorHandlerController {
 	public ResponseEntity<ApiErrorResponse> handleInvalidParams(MissingServletRequestParameterException ex,
 			Locale locale) {
 		log.error("Required param missing", ex);
-		ApiException e = new ApiException(WishListErrorCode.PARAMETRO_OBRIGATORIO, HttpStatus.BAD_REQUEST);
+		ApiException e = new ApiException(WishListErrorCode.PARAMETER_REQUIRED, HttpStatus.BAD_REQUEST);
 		var message = ApiErrorResponseUtil.getMessage(e, messageSource, locale);
 		ApiErrorResponse error = new ApiErrorResponse(e, message, locale);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
