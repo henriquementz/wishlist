@@ -7,6 +7,15 @@ Neste projeto usei o modelo arquitetural Clean Architecture, com a motivação d
 
 ![68747470733a2f2f686162726173746f726167652e6f72672f7765622f6665382f6338322f6133322f66653863383261333262313534386231613239373138376532346165373535612e706e67](https://user-images.githubusercontent.com/8506455/124397827-a1341300-dce8-11eb-987b-e42df34d26af.png)
 
+Na solução proposta existem 3 grupos principais: 
+> core: responsável pelos casos de uso (regras de negócio) e entidades (regras de negócio e domínio). 
+
+
+> dataprovider: responsável pela integração com a base de dados. 
+
+
+> api: responsável pela porta de entrada dos serviços, nesse caso endpoint HTTP.
+
 
 ## Stack 
 - Java 11 
