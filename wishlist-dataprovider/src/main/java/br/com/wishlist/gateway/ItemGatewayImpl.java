@@ -23,7 +23,7 @@ public class ItemGatewayImpl implements ItemGateway {
     public Item save(final Item item) {
         var itemEntity = ItemMapper.mapFromDomain(item);
         var itemEntitySaved = itemRepository.save(itemEntity);
-        log.info("WISHLIST_ITEM_SAVED | Item was saved successfully | Item: {}", itemEntitySaved);
+        log.info("WISHLIST_ITEM_SAVED | Item was saved successfully | response: {}", itemEntitySaved);
         return ItemMapper.mapFromEntity(itemEntitySaved);
     }
 
@@ -40,27 +40,28 @@ public class ItemGatewayImpl implements ItemGateway {
     @Override
     public void delete(final Long clientId, final Long itemId) {
         itemRepository.deleteByClientIdAndItemId(clientId, itemId);
-        log.info("WISHLIST_ITEM_DELETED | Item was successfully deleted.");
+        log.info("WISHLIST_ITEM_DELETED | Item was successfully deleted |  clientId: {}, itemId: {}",
+                clientId, itemId);
     }
 
     @Override
     public List<Item> findAll(final Long clientId, final Pageable pageable) {
         return itemRepository.findByClientId(clientId, pageable)
-            .stream()
-            .map(ItemMapper::mapFromEntity)
-            .collect(Collectors.toList());
+                .stream()
+                .map(ItemMapper::mapFromEntity)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Item> find(final Long clientId, final Long itemId) {
         var itemOptional = itemRepository.findByClientIdAndItemId(clientId, itemId);
 
-         if (itemOptional.isEmpty()) {
-             return Optional.empty();
-         } else {
-             log.info("WISHLIST_ITEM_FOUND | Item was found: {}.", itemOptional.get());
-             return Optional.of(ItemMapper.mapFromEntity(itemOptional.get()));
-         }
+        if (itemOptional.isEmpty()) {
+            return Optional.empty();
+        } else {
+            log.info("WISHLIST_ITEM_FOUND | Item was found | response: {}", itemOptional.get());
+            return Optional.of(ItemMapper.mapFromEntity(itemOptional.get()));
+        }
     }
 
     @Override

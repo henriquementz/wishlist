@@ -20,7 +20,7 @@ public interface ItemGateway {
 
     Long count(final Long clientId);
 
-    boolean isAlreadyAdded(final Long clientId, final Long productId);
+    boolean isAlreadyAdded(final Long clientId, final Long itemId);
 
     void delete(final Long clientId, final Long itemId);
 

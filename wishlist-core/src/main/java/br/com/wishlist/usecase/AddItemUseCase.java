@@ -22,15 +22,17 @@ public class AddItemUseCase {
         var itemsOnWishlist = itemGateway.countByClientId(item.getClientId());
 
         if (itemsOnWishlist >= MAXIMUM_WISHLIST_LENGTH) {
-            log.error("ERROR_WISHLIST_ITEM_SAVE | Wishlist is fully.");
+            log.error("ERROR_WISHLIST_ITEM_SAVE | Wishlist is fully |  clientId: {}, itemId: {}",
+                    item.getClientId(), item.getItemId());
             throw new ApiException(WishListErrorCode.WISHLIST_LENGTH_ERROR);
         } else if (itemGateway.isAlreadyAdded(item.getClientId(), item.getItemId())) {
-            log.error("ERROR_WISHLIST_ITEM_SAVE | Product is already saved on wishlist.");
+            log.error("ERROR_WISHLIST_ITEM_SAVE | Item is already saved on wishlist | clientId: {}, itemId: {}",
+                    item.getClientId(), item.getItemId());
             throw new ApiException(WishListErrorCode.WISHLIST_ITEM_ALREADY_ADDED);
         }
 
         var itemSaved = itemGateway.save(item);
-        log.error("WISHLIST_ITEM_SAVED | Item was saved successfully on wishlist: {}.", itemSaved);
+        log.error("WISHLIST_ITEM_SAVED | Item was saved successfully on wishlist | response: {}.", itemSaved);
 
         return itemSaved;
     }

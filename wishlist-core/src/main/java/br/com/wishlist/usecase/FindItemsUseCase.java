@@ -31,11 +31,11 @@ public class FindItemsUseCase {
         var itemOptional = itemGateway.find(clientId, itemId);
 
         if (itemOptional.isEmpty()) {
-            log.error("WISHLIST_ITEM_FIND | Item was not found on wishlist.");
+            log.error("WISHLIST_ITEM_FIND | Item was not found on wishlist | clientId: {}, itemId: {}", clientId, itemId);
             throw new ApiException(WishListErrorCode.WISHLIST_ITEM_NOT_FOUND);
         }
 
-        log.info("WISHLIST_ITEM_FOUND | Item was retrieved successfully: {}", itemOptional.get());
+        log.info("WISHLIST_ITEM_FOUND | Item was retrieved successfully | response: {}", itemOptional.get());
 
         return itemOptional.get();
     }

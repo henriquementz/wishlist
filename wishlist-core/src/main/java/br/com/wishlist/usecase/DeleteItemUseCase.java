@@ -19,7 +19,8 @@ public class DeleteItemUseCase {
         var itemOptional = itemGateway.find(clientId, itemId);
 
         if (itemOptional.isEmpty()) {
-            log.error("ERROR_WISHLIST_ITEM_DELETE | Item was not found on wishlist: {}.", itemId);
+            log.error("ERROR_WISHLIST_ITEM_DELETE | Item was not found on wishlist | clientId: {}, itemId: {}",
+                    clientId, itemId);
             throw new ApiException(WishListErrorCode.WISHLIST_ITEM_NOT_FOUND);
         }
 
