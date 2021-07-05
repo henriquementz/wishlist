@@ -24,6 +24,8 @@ public class DeleteItemUseCase {
         }
 
         itemGateway.delete(clientId, itemId);
+        log.error("WISHLIST_ITEM_DELETED | Item was deleted successfully on wishlist | clientId: {}, itemId: {}.",
+                clientId, itemId);
     }
 
 }
