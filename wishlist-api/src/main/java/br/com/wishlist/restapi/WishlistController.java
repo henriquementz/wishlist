@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/wishlist/")
+@RequestMapping("/api/wishlist/client")
 public class WishlistController implements WishlistControllerApi {
 
     @Autowired

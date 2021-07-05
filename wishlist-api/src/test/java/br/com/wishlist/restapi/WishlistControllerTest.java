@@ -50,7 +50,7 @@ class WishlistControllerTest {
         when(addItemUseCase.add(any())).thenReturn(mockUtil.getValidItem());
 
         this.mockMvc.perform(
-                post("/api/wishlist/1/add")
+                post("/api/wishlist/client/1/add")
                         .content(mockUtil.getJsonItemRequest())
                         .accept(MediaType.APPLICATION_JSON)
                         .header("Content-Type", "application/json"))
@@ -63,7 +63,7 @@ class WishlistControllerTest {
         when(addItemUseCase.add(any())).thenThrow(new RuntimeException("Database Error"));
 
         this.mockMvc.perform(
-                post("/api/wishlist/1/add")
+                post("/api/wishlist/client/1/add")
                         .content(mockUtil.getJsonItemRequest())
                         .accept(MediaType.APPLICATION_JSON)
                         .header("Content-Type", "application/json"))
@@ -76,7 +76,7 @@ class WishlistControllerTest {
         when(addItemUseCase.add(any())).thenThrow(new ApiException(WishListErrorCode.WISHLIST_LENGTH_ERROR));
 
         this.mockMvc.perform(
-                post("/api/wishlist/1/add")
+                post("/api/wishlist/client/1/add")
                         .content(mockUtil.getJsonItemRequest())
                         .accept(MediaType.APPLICATION_JSON)
                         .header("Content-Type", "application/json"))
@@ -89,7 +89,7 @@ class WishlistControllerTest {
         when(findItemsUseCase.findAll(anyLong(), any())).thenReturn(mockUtil.getListOfValidItems());
 
         this.mockMvc.perform(
-                get("/api/wishlist/1")
+                get("/api/wishlist/client/1")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("page", "0")
                         .param("size", "10")
@@ -103,7 +103,7 @@ class WishlistControllerTest {
         when(findItemsUseCase.find(anyLong(), anyLong())).thenReturn(mockUtil.getValidItem());
 
         this.mockMvc.perform(
-                get("/api/wishlist/1/item/342324")
+                get("/api/wishlist/client/1/item/342324")
                         .accept(MediaType.APPLICATION_JSON)
                         .header("Content-Type", "application/json"))
                 .andExpect(status().isOk());
@@ -114,7 +114,7 @@ class WishlistControllerTest {
 
         doNothing().when(deleteItemUseCase).delete(anyLong(), anyLong());
 
-        this.mockMvc.perform(delete("/api/wishlist/1/item/342324"))
+        this.mockMvc.perform(delete("/api/wishlist/client/1/item/342324"))
                 .andExpect(status().isOk());
     }
 
