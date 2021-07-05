@@ -41,7 +41,7 @@ public class WishlistController implements WishlistControllerApi {
     @GetMapping(value = "/{clientId}")
     public ResponseEntity<PageItemResponse> getAll(@PathVariable Long clientId,
         @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int size) {
+        @RequestParam(defaultValue = "20") int size) {
         List<Item> response = findItemsUseCase.findAll(clientId, PageRequest.of(page, size));
         Long quantity = findItemsUseCase.count(clientId);
         return ResponseEntity.ok(GroupMapper.mapFromDomain(response, quantity));
